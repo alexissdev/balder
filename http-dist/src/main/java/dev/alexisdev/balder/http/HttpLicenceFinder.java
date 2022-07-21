@@ -32,6 +32,15 @@ public class HttpLicenceFinder
         this.requestWebsite = requestWebsite;
     }
 
+    /**
+     * > The `builder()` function returns a new instance of the `HttpLicenceFinderBuilder` class
+     *
+     * @return A new instance of the HttpLicenceFinderBuilder class.
+     */
+    public static HttpLicenceFinderBuilder builder() {
+        return new HttpLicenceFinderBuilder();
+    }
+
     @Override
     public @Nullable Licence find(
             String licence
