@@ -18,6 +18,15 @@ public class MongoLicenceFinder
         this.mongoCollection = mongoCollection;
     }
 
+    /**
+     * > It returns a new instance of the builder class
+     *
+     * @return A new instance of the MongoLicenceFinderBuilder class.
+     */
+    public static MongoLicenceFinderBuilder builder() {
+        return new MongoLicenceFinderBuilder();
+    }
+
     @Override
     public Licence find(String licence) {
         Document document = findDocument(
