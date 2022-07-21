@@ -15,7 +15,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static dev.alexisdev.balder.http.HttpConnectionProvider.*;
+import static dev.alexisdev.balder.http.provider.HttpConnectionProvider.*;
+import static dev.alexisdev.balder.http.util.HttpUtil.handleResponse;
 
 public class HttpLicenceFinder
         implements LicenceFinder {
@@ -64,18 +65,6 @@ public class HttpLicenceFinder
         } catch (URISyntaxException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * If the response has an entity, return the entity as a string, otherwise return null.
-     *
-     * @return A lambda expression that takes a response and returns a string.
-     */
-    private ResponseHandler<String> handleResponse() {
-        return response -> {
-            HttpEntity entity = response.getEntity();
-            return entity != null ? EntityUtils.toString(entity) : null;
-        };
     }
 
     /**
