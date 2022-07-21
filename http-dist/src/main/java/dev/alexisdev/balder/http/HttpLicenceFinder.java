@@ -7,8 +7,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,14 +15,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static dev.alexisdev.balder.http.HttpConnectionProvider.*;
+
 public class HttpLicenceFinder
         implements LicenceFinder {
 
     private static final String LICENCE_FORMAT =
             "%s/licences/%s";
 
-    protected static final CloseableHttpClient HTTP_CLIENT
-            = HttpClients.createDefault();
     protected static final Gson GSON =
             new Gson();
     protected final String requestWebsite;
@@ -55,7 +53,7 @@ public class HttpLicenceFinder
             )).toURI();
             ResponseHandler<String> responseHandler = handleResponse();
             HttpGet get = new HttpGet(url);
-            HttpResponse httpResponse = HTTP_CLIENT.execute(get);
+            HttpResponse httpResponse = getHttpClient().execute(get);
 
             String response = responseHandler.handleResponse(httpResponse);
 
