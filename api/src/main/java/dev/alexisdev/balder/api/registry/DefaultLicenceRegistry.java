@@ -39,9 +39,10 @@ public class DefaultLicenceRegistry
         }
 
         if (licenceModel.getAddress() != null) {
-            throw new LicenceUsedException(
-                    "The licence of key " + licence + " is already used."
+            licenceUsedAction(
+                    licenceModel
             );
+            return;
         }
 
         licenceModel.setAddress(
@@ -50,6 +51,21 @@ public class DefaultLicenceRegistry
 
         licenceUpdater.update(
                 licenceModel
+        );
+    }
+
+
+    /**
+     * This will be the method called in case the license is already used,
+     * in case you want a customized action when this event happens,
+     * it is recommended to extend the class of {@link DefaultLicenceRegistry}
+     * and modify the method of {@link DefaultLicenceRegistry#licenceUsedAction(Licence)}
+     */
+    protected void licenceUsedAction(
+            Licence licence
+    ) {
+        throw new LicenceUsedException(
+                "The licence of key " + licence.getId() + " is already used."
         );
     }
 }
