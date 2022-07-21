@@ -26,6 +26,15 @@ public class HttpLicenceUpdater
         this.url = url;
     }
 
+    /**
+     * > The `builder()` function returns a new instance of the `HttpLicenceUpdaterBuilder` class
+     *
+     * @return A new instance of the HttpLicenceUpdaterBuilder class.
+     */
+    public static HttpLicenceUpdaterBuilder builder() {
+        return new HttpLicenceUpdaterBuilder();
+    }
+
     @Override
     public void update(
             Licence licence
