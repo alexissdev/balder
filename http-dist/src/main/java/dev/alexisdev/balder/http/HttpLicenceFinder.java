@@ -16,13 +16,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import static dev.alexisdev.balder.http.provider.HttpConnectionProvider.*;
+import static dev.alexisdev.balder.http.util.HttpUtil.LICENCE_FORMAT;
 import static dev.alexisdev.balder.http.util.HttpUtil.handleResponse;
 
 public class HttpLicenceFinder
         implements LicenceFinder {
-
-    private static final String LICENCE_FORMAT =
-            "%s/licences/%s";
 
     protected static final Gson GSON =
             new Gson();

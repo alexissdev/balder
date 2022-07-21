@@ -10,6 +10,9 @@ public class HttpUtil {
         throw new UnsupportedOperationException();
     }
 
+    public static final String LICENCE_FORMAT =
+            "%s/licences/%s";
+
     /**
      * If the response has an entity, return the entity as a string, otherwise return null.
      *
