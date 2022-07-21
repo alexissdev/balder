@@ -1,4 +1,5 @@
-repositories {
+plugins {
+    id("balder.testing-conventions")
 }
 
 dependencies {
