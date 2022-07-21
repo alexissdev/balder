@@ -18,6 +18,15 @@ public class MongoLicenceUpdater
         this.mongoCollection = mongoCollection;
     }
 
+    /**
+     * This function returns a new instance of the MongoLicenceUpdaterBuilder class.
+     *
+     * @return A new instance of the MongoLicenceUpdaterBuilder class.
+     */
+    public static MongoLicenceUpdaterBuilder builder() {
+        return new MongoLicenceUpdaterBuilder();
+    }
+
     @Override
     public void update(
             Licence licence
