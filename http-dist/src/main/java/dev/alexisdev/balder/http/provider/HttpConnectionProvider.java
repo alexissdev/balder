@@ -1,4 +1,4 @@
-package dev.alexisdev.balder.http;
+package dev.alexisdev.balder.http.provider;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

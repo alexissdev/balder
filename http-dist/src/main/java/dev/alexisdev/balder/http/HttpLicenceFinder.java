@@ -1,13 +1,11 @@
 package dev.alexisdev.balder.http;
 
-import com.google.gson.Gson;
 import dev.alexisdev.balder.api.finder.LicenceFinder;
 import dev.alexisdev.balder.api.licence.Licence;
-import org.apache.http.HttpEntity;
+import dev.alexisdev.balder.http.provider.GsonProvider;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -21,9 +19,6 @@ import static dev.alexisdev.balder.http.util.HttpUtil.handleResponse;
 
 public class HttpLicenceFinder
         implements LicenceFinder {
-
-    protected static final Gson GSON =
-            new Gson();
     protected final String requestWebsite;
 
     protected HttpLicenceFinder(
@@ -46,7 +41,8 @@ public class HttpLicenceFinder
             String licence
     ) {
         try {
-            URI url = new URL(getRequestWebsite(
+            URI url = new URL(String.format(
+                    LICENCE_FORMAT,
                     requestWebsite,
                     licence
             )).toURI();
@@ -56,7 +52,7 @@ public class HttpLicenceFinder
 
             String response = responseHandler.handleResponse(httpResponse);
 
-            return GSON.fromJson(
+            return GsonProvider.getGson().fromJson(
                     response,
                     Licence.class
             );
@@ -65,22 +61,4 @@ public class HttpLicenceFinder
         }
     }
 
-    /**
-     * If the website ends with a slash, append the key to the website. Otherwise, append a slash and the key to the
-     * website
-     *
-     * @param rawWebsite The website you want to send the request to.
-     * @param key The key to be used to generate the request.
-     * @return The website with the key appended to the end.
-     */
-    private String getRequestWebsite(
-            String rawWebsite,
-            String key
-    ) {
-        return String.format(
-                LICENCE_FORMAT,
-                rawWebsite,
-                key
-        );
-    }
 }
