@@ -1,5 +1,7 @@
 package dev.alexisdev.balder.api.checker;
 
+import dev.alexisdev.balder.api.finder.LicenceFinder;
+
 public interface LicenceChecker {
 
     /**
@@ -11,4 +13,17 @@ public interface LicenceChecker {
     boolean isLicenced(
             String licence
     );
+
+    /**
+     * Return the default checker of licence's
+     *
+     * @return A new instance of the DefaultLicenceChecker class.
+     */
+    static LicenceChecker getDefault(
+            LicenceFinder licenceFinder
+    ) {
+        return DefaultLicenceChecker.create(
+                licenceFinder
+        );
+    }
 }
