@@ -1,26 +1,26 @@
 package dev.alexisdev.balder.api.exceptions;
 
-public class LicenceNotFoundException
+public class LicenceUsedException
         extends RuntimeException {
 
-    public LicenceNotFoundException() {
+    public LicenceUsedException() {
         super();
     }
 
-    public LicenceNotFoundException(
+    public LicenceUsedException(
             String message
     ) {
         super(message);
     }
 
-    public LicenceNotFoundException(
+    public LicenceUsedException(
             String message,
             Throwable throwable
     ) {
         super(message, throwable);
     }
 
-    public LicenceNotFoundException(
+    public LicenceUsedException(
             Throwable throwable
     ) {
         super(throwable);
