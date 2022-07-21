@@ -3,7 +3,17 @@ package dev.alexisdev.balder.api.registry;
 import dev.alexisdev.balder.api.finder.LicenceFinder;
 import dev.alexisdev.balder.api.updater.LicenceUpdater;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public interface LicenceRegistry {
+
+    default void registry(String licence) throws UnknownHostException {
+        registry(
+                licence,
+                InetAddress.getLocalHost().getHostAddress()
+        );
+    }
 
     /**
      * This function takes a licence and an address.
