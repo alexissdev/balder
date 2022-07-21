@@ -3,6 +3,7 @@ package dev.alexisdev.balder.http;
 import dev.alexisdev.balder.api.licence.Licence;
 import dev.alexisdev.balder.api.updater.LicenceUpdater;
 import dev.alexisdev.balder.http.provider.GsonProvider;
+import dev.alexisdev.balder.http.util.HttpUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
@@ -40,7 +41,13 @@ public class HttpLicenceUpdater
             Licence licence
     ) {
         try {
-            HttpPut put = new HttpPut(url);
+            HttpPut put = new HttpPut(
+                    String.format(
+                            HttpUtil.LICENCE_FORMAT,
+                            url,
+                            licence.getId()
+                    )
+            );
             put.setEntity(
                     new StringEntity(
                             GsonProvider.getGson().toJson(licence),
