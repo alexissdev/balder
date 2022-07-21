@@ -1,9 +1,6 @@
 package dev.alexisdev.balder.http.test;
 
-import com.google.gson.Gson;
-import dev.alexisdev.balder.api.exceptions.LicenceUsedException;
 import dev.alexisdev.balder.api.finder.LicenceFinder;
-import dev.alexisdev.balder.api.licence.Licence;
 import dev.alexisdev.balder.api.registry.LicenceRegistry;
 import dev.alexisdev.balder.api.updater.LicenceUpdater;
 import dev.alexisdev.balder.http.HttpLicenceFinder;
