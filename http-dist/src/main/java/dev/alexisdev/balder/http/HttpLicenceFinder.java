@@ -20,6 +20,9 @@ import java.net.URL;
 public class HttpLicenceFinder
         implements LicenceFinder {
 
+    private static final String LICENCE_FORMAT =
+            "%s/licences/%s";
+
     protected static final CloseableHttpClient HTTP_CLIENT
             = HttpClients.createDefault();
     protected static final Gson GSON =
@@ -89,10 +92,10 @@ public class HttpLicenceFinder
             String rawWebsite,
             String key
     ) {
-        if (rawWebsite.endsWith("/")) {
-            return rawWebsite + key;
-        }
-
-        return rawWebsite + "/" + key;
+        return String.format(
+                LICENCE_FORMAT,
+                rawWebsite,
+                key
+        );
     }
 }
